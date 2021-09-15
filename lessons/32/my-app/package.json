@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "husky": "^7.0.2",
     "tms-lesson32": "^1.1.0"
   },
   "devDependencies": {
@@ -21,7 +22,6 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
-    "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.0"
   },
