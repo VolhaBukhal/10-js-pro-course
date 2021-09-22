@@ -16,19 +16,16 @@ let minuteSalaryEl = document.querySelector('#in-minute');
 let secondSalaryEl = document.querySelector('#in-second');
 
 
-const carrency = {
-  'rubl': 1,
-  'euro': 3.1,
-  'dollar': 2.5,
-  'pound': 3.8,
+enum Time {
+  Year = 'in-year',
+  Vacation = 'in-vacation',
+  Week = 'in-week',
+  Day = 'in-day',
+  Hour = 'in-hour',
+  Minute = 'in-minute',
+  Second = 'in-second',
 };
-
-/* const countingData = {
-  'monthSalaryEl': monthSalaryEl.value,
-  'vacationDurationEl': vacationDurationEl.value,
-  'workingDayEl': workingDayEl.value,
-  'workinTimeEl': workinTimeEl.value,
-} */
+console.log(Time);
 
 //update text of currency
 const updateCurrencyText = () => {
@@ -37,57 +34,70 @@ const updateCurrencyText = () => {
 }
 currencyEl.addEventListener('change', updateCurrencyText);
 
-const countSalary = ( time: string ): number => {
+const countSalary = ( time: Time | string ): number => {
   let inDay: number = +monthSalaryEl.value / (+workingDayEl.value * 4);
   let inHour: number = inDay / +workinTimeEl.value;
  
-  if (time === 'in-year') {
+  if (time === Time.Year) {
    return +monthSalaryEl.value * 12;
   }
-  if (time === 'in-vacation') {
+  if (time === Time.Vacation) {
     return Math.round(inDay * +vacationDurationEl.value);
   }
-  if (time === 'in-week') {
+  if (time === Time.Week) {
     return Math.round(+monthSalaryEl.value / 4);
   }
-  if (time === 'in-day') {
+  if (time === Time.Day) {
     return  Math.round(inDay);
   }
-  if (time === 'in-hour') {
+  if (time === Time.Hour) {
     return Math.round(inHour *100) / 100;
   }
-  if (time === 'in-minute') {
+  if (time === Time.Minute) {
     return Math.round((inHour / 60) * 1000) / 1000;
   }
-  if (time === 'in-second') {
+  if (time === Time.Second) {
     return Math.round((inHour / 3600) * 1000) / 1000;
+  }
+  else {
+    return 0
   }
 }
 
 //rende all fields
-const rendeDate = () => {
-  outputSpans.forEach(item => item.textContent = countSalary(item.id).toString())
+const rendeDate = ()=> {
+  outputSpans.forEach(item => item.textContent = countSalary(item.id).toString());
 }
 
 // count immediately after render DOM
 document.addEventListener('DOMContentLoaded', rendeDate);
 
-
 //update data in case of any input changed
-//get all inputs than can be changed;
+//get all inputs which can be changed;
 let counts = document.querySelectorAll('[data-count]');
 counts.forEach(item => item.addEventListener('input', rendeDate));
 
 
-//update data for seconds every second
+/* //update data for seconds every second
 let inSecond = countSalary('in-second');
-let seconds = countSalary('in-second');
-monthSalaryEl.addEventListener('change', () => {
-  inSecond = countSalary('in-second')
-});
+let seconds = 0;
+monthSalaryEl.addEventListener('input', () => {
+  inSecond = countSalary('in-second');
+}); */
+
+let inSecond = countSalary('in-second');
+let seconds = 0;
+counts.forEach(item => item.addEventListener('input', ()=> {
+  inSecond = countSalary('in-second');
+  seconds = 0;
+  console.log('input is changed');
+}))
   
-setInterval( () => {
+let int = setInterval( () => {
   seconds += inSecond;
+  console.log('inSecond: ', inSecond);
+  console.log('seconds ', seconds);
   secondSalaryEl.textContent = seconds.toFixed(3);
 }, 1000);
+
 
