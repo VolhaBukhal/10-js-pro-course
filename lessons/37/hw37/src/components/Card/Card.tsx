@@ -8,18 +8,22 @@ import Price from '../Price';
 interface MyCard {
     title: string,
     classBg?: string,
-    price?: string,
-    period?: string,
-    data?: string[],
+    price: string,
+    period: string,
+    data: string[],
+    
 }
-const Card = ({title, classBg, price, period, data}: any) => {
+const Card = ({title, classBg, price, period, data}: MyCard) => {
     const cardItem = "card-item";
    
     return (<div className={classBg ? `card-item ${classBg}` : cardItem}>
         <CardHeader title={title} className={classBg}/>
         <CardList data={data}/>
         <Price price={price} period={period}/>
-        <Button label="Choose"/>
+        <Button 
+           handleButton={() => console.log('hello')}
+               
+        label="Choose"/>
         </div>
     )
 } 

@@ -4,6 +4,7 @@ import './Button.css';
 
 interface MyButton {
     label: string;
+    handleButton: Function;
 }
 
 const Button = ({label}: MyButton) => {

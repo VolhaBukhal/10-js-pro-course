@@ -5,20 +5,18 @@ import Header from './components/Header';
 import Card from './components/Card';
 import GreenCard from './components/GreenCard';
 
-
-
 function App() {
   
   const dayPass = [
-    ['8 hour usage of our coworking spase'],
-    ['Access to All our rooms'],
+    '8 hour usage of our coworking spase',
+    'Access to All our rooms',
   ]
   const monthlyPass = [
-    ['8 hour usage of our coworking spase'],
-    ['Access to All our rooms'],
-    ['Dedicated Desk'],
-    ['Free Business Address'],
-    ['Free Lunch 1x a day'],
+    '8 hour usage of our coworking spase',
+    'Access to All our rooms',
+    'Dedicated Desk',
+    'Free Business Address',
+    'Free Lunch 1x a day',
   ]
   
   const data = [
@@ -34,7 +32,6 @@ function App() {
         <GreenCard title="Save More"/>
         <Card title="Day Pass"  price="20" period="day" data={dayPass}/>
         <Card title="Month Pass" price="380" period="day" data={monthlyPass}/>
-        {/* <Card data={data}/> */}
       </div>
     </div>
   );

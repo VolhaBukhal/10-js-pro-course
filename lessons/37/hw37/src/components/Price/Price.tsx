@@ -2,7 +2,7 @@ import React from 'react'
 import './Price.css';
 
 interface MyPrice {
-    price: number;
+    price: string;
     period: string;
 }
 
